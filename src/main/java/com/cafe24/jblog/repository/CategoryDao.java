@@ -20,4 +20,9 @@ public class CategoryDao {
 		return sqlSession.selectOne("category.getCount");
 	}
 
+	public int deleteAll() {
+		return sqlSession.delete("category.deleteAll");
+		
+	}
+
 }

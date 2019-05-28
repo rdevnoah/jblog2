@@ -31,6 +31,8 @@ public class TestCategoryDao {
 	
 	@Test // categoryDao insert
 	public void test01() {
+		categoryDao.deleteAll();
+		assertThat(categoryDao.getCount(), is(0));
 		blogDao.deleteAll();
 		assertThat(blogDao.getCount(), is(0));
 		userDao.deleteAll();
