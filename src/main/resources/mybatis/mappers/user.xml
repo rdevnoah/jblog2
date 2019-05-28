@@ -10,6 +10,15 @@
 		]]>
 	</delete>
 	
+	<select id="get" parameterType="uservo" resultType="uservo">
+		<![CDATA[
+			select id, name, password, reg_date as regDate 
+			from user
+			where id=#{id } and password=#{password }
+			
+		]]>
+	</select>
+	
 	<select id="getCount" resultType="int">
 		<![CDATA[
 			select count(*) from user
@@ -23,6 +32,8 @@
 			values(#{id }, #{name }, #{password }, now()) 
 		]]>
 	</insert>
+	
+	
 
 	<!-- <insert id="insert" parameterType="uservo">
 	<![CDATA[

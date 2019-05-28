@@ -27,6 +27,10 @@ public class UserService {
 		blogDao.insert(new BlogVo(vo.getId(), "블로그입니다.", "default"));
 		categoryDao.insert(new CategoryVo(vo.getId()));
 		return 1;
+	}
+
+	public UserVo getUserByIdAndPassword(UserVo vo) {
+		return userDao.getUser(vo);
 	}	
 
 }

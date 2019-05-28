@@ -25,4 +25,8 @@ public class CategoryDao {
 		
 	}
 
+	public CategoryVo getCategory(String blogId) {
+		return sqlSession.selectOne("category.getTestCategory", blogId);
+	}
+
 }

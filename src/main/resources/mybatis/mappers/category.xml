@@ -23,6 +23,14 @@
 			values(#{blogId }) 
 		]]>
 	</insert>
+	
+	<select id="getTestCategory" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+			select no
+			from category
+			where blog_id=#{blogId }
+		]]>
+	</select>
 
 	<!-- <insert id="insert" parameterType="categoryvo">
 	<![CDATA[
