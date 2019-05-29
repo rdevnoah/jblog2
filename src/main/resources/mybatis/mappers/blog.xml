@@ -24,13 +24,7 @@
 		]]>
 	</insert>
 	
-	<select id="getAllBlogById" parameterType="string" resultType="blogvo">
-		<![CDATA[
-			select id, title, logo 
-			from blog 
-			where id = #{id }
-		]]>
-	</select>
+	
 
 	<!-- <insert id="insert" parameterType="blogvo">
 	<![CDATA[

@@ -12,7 +12,13 @@
 
 	<select id="getMainPost" parameterType="string" resultType="postvo">
 		<![CDATA[
-			
+			select no, title, contents, reg_date as regDate, category_no as categoryNo 
+			from post
+			where no=(select max(p.no)
+						from user u, blog b, category c, post p
+						where u.id = b.id and b.id = c.blog_id 
+						and c.no = p.category_no 
+						and u.id=#{id })
 		]]>
 	</select>
 
@@ -29,6 +35,16 @@
 			values(null, #{title }, #{contents }, now(), #{categoryNo }) 
 		]]>
 	</insert>
+	
+	<select id="getAllPostById" parameterType="string" resultType="postvo">
+		<![CDATA[
+			select p.no, p.title, p.contents, p.reg_date, p.category_no
+			from user u, blog b, category c, post p
+			where u.id = b.id and b.id = c.blog_id 
+				and c.no = p.category_no 
+				and u.id=#{id }
+		]]>
+	</select>
 
 
 

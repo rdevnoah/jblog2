@@ -3,3 +3,4 @@
 .project
 *.png
 /.settings/*
+/.settings/

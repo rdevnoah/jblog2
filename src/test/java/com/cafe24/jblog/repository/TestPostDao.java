@@ -77,8 +77,16 @@ public class TestPostDao {
 		PostVo post1 = new PostVo("Spring Camp 2016 참여기" 
 				,"스프링 캠프에서는 JVM(Java Virtual Machine) 기반 시스템의 백엔드(Back-end) 또는 서버사이드(Server-side)라고 칭하는 영역을 개발하는 애플리케이션 서버 개발에 관한 기술과 정보, 경험을 공유하는 컨퍼런스입니다."
 				, testCategory.getNo());
+		PostVo post2 = new PostVo("Spring Camp 2016 참여기2" 
+				,"재미없었습니다...;;"
+				, testCategory.getNo());
+		PostVo post3 = new PostVo("Spring Camp 2016 참여기" 
+				,"이번에도 재미없었습니다....;;;"
+				, testCategory.getNo());
 		assertThat(postDao.insert(post1), is(1));
-		assertThat(postDao.getCount(),is(1));
+		assertThat(postDao.insert(post2), is(1));
+		assertThat(postDao.insert(post3), is(1));
+		assertThat(postDao.getCount(),is(3));
 		
 		
 		assertThat(blogDao.getAllBlogById("zzagam1").size(), is(1));

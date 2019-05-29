@@ -31,6 +31,17 @@
 			where blog_id=#{blogId }
 		]]>
 	</select>
+	
+	<select id="getCategoryListById" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+			select no, name, description, reg_date as regDate, blog_id as blogId
+			from category
+			where blog_id=#{id }
+		]]>
+	</select>
+	
+	
+	
 
 	<!-- <insert id="insert" parameterType="categoryvo">
 	<![CDATA[
