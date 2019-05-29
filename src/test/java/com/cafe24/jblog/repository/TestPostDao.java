@@ -80,7 +80,7 @@ public class TestPostDao {
 		PostVo post2 = new PostVo("Spring Camp 2016 참여기2" 
 				,"재미없었습니다...;;"
 				, testCategory.getNo());
-		PostVo post3 = new PostVo("Spring Camp 2016 참여기" 
+		PostVo post3 = new PostVo("Spring Camp 2016 참여기3" 
 				,"이번에도 재미없었습니다....;;;"
 				, testCategory.getNo());
 		assertThat(postDao.insert(post1), is(1));
@@ -89,6 +89,6 @@ public class TestPostDao {
 		assertThat(postDao.getCount(),is(3));
 		
 		
-		assertThat(blogDao.getAllBlogById("zzagam1").size(), is(1));
+		assertThat(blogDao.getAllBlog("zzagam1").size(), is(3));
 	}
 }

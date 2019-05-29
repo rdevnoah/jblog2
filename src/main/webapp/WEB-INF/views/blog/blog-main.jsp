@@ -21,9 +21,16 @@
 					<p>
 				</div>
 				<ul class="blog-list">
-					
+					<c:if test='${requestScope.map.title == "none" }'>
+						<div style="text-align: center">전체 포스트 목록</div>
+						<div>--------------------------</div>
+					</c:if>
+					<c:if test='${requestScope.map.title == "exist" }'>
+						<div style="text-align: center">${requestScope.map.main.categoryName } 포스트 목록</div>
+						<div>--------------------------</div>
+					</c:if>
 					<c:forEach items="${requestScope.map.post }" var="post">
-						<li><a href="">${post.title }</a> <span>${post.regDate }</span></li>
+						<li><a href="${pageContext.request.contextPath }/${post.blogId }/${post.categoryNo }/${post.no }">${post.title }</a> <span>${post.regDate }</span></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -39,7 +46,7 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach items="${requestScope.map.category }" var="category" >
-					<li><a href="">${category.name }</a></li>
+					<li><a href="${pageContext.request.contextPath }/${category.blogId }/${category.no }">${category.name }</a></li>
 				</c:forEach>
 			</ul>
 		</div>

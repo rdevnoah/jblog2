@@ -26,9 +26,14 @@ public class TestUserDao {
 	
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private PostDao postDao;
 
 	@Test // userDAO insert test
 	public void test01() {
+		postDao.deleteAll();
+		assertThat(postDao.getCount(), is(0));
 		categoryDao.deleteAll();
 		assertThat(categoryDao.getCount(), is(0));
 		blogDao.deleteAll();
@@ -43,15 +48,12 @@ public class TestUserDao {
 		assertThat(userDao.insert(vo2), is(1));
 		assertThat(userDao.insert(vo3), is(1));
 		assertThat(userDao.getCount(), is(3));
-	}
-	
-	@Test // userDao get User test
-	public void test02() {
-		test01();
 		UserVo insertUser = new UserVo("zzagam2", "zzagam2");
 		UserVo vo = userDao.getUser(insertUser);
 		assertThat(insertUser.getId().equals(vo.getId()),is(true));
 	}
+	
+	
 
 	
 	

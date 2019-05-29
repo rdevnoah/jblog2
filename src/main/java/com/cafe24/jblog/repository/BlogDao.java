@@ -28,16 +28,28 @@ public class BlogDao {
 		return sqlSession.insert("blog.insert", blog);
 	}
 
-	public List<PostVo> getAllBlogById(String id) {
+	public List<PostVo> getAllBlog(String id) {
 		return sqlSession.selectList("post.getAllPostById",id);
 	}
+	
+	public List<PostVo> getAllBlog(CategoryVo vo){
+		return sqlSession.selectList("post.getAllPostByIdAndCategoryNo", vo);
+	}
 
-	public PostVo getMainPostById(String id) {
+	public PostVo getMainPost(String id) {
 		return sqlSession.selectOne("post.getMainPost", id);
 	}
 
 	public List<CategoryVo> getCategoryListById(String id) {
 		return sqlSession.selectList("category.getCategoryListById", id);
+	}
+
+	public PostVo getMainPost(Long no) {
+		return sqlSession.selectOne("post.getMainPostByNo", no);
+	}
+
+	public PostVo getMainPost(CategoryVo vo) {
+		return sqlSession.selectOne("post.getMainPostByIdAndCategoryNo", vo);
 	}
 
 }

@@ -14,6 +14,11 @@ public class CategoryVo {
 		this.blogId = blogId;
 	}
 
+	public CategoryVo(String id, Long no) {
+		this.blogId = id;
+		this.no = no;
+	}
+
 	public Long getNo() {
 		return no;
 	}

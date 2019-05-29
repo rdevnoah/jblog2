@@ -29,8 +29,13 @@ public class TestCategoryDao {
 	@Autowired
 	private CategoryDao categoryDao;
 	
+	@Autowired
+	private PostDao postDao;
+	
 	@Test // categoryDao insert
 	public void test01() {
+		postDao.deleteAll();
+		assertThat(postDao.getCount(), is(0));
 		categoryDao.deleteAll();
 		assertThat(categoryDao.getCount(), is(0));
 		blogDao.deleteAll();

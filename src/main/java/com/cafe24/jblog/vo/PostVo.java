@@ -6,6 +6,8 @@ public class PostVo {
 	private String contents;
 	private String regDate;
 	private Long categoryNo;
+	private String blogId;
+	private String categoryName;
 	
 	public PostVo() {}
 	
@@ -15,6 +17,25 @@ public class PostVo {
 		this.categoryNo = categoryNo;
 	}
 	
+	
+	
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(String blogId) {
+		this.blogId = blogId;
+	}
+
 	public Long getNo() {
 		return no;
 	}
