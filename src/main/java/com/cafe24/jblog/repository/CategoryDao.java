@@ -17,6 +17,10 @@ public class CategoryDao {
 	public int insert(CategoryVo categoryVo) {
 		return sqlSession.insert("category.insert", categoryVo);
 	}
+	
+	public int insertCategory(CategoryVo categoryVo) {
+		return sqlSession.insert("category.insertCategory", categoryVo);
+	}
 
 	public int getCount() {
 		return sqlSession.selectOne("category.getCount");
@@ -33,6 +37,11 @@ public class CategoryDao {
 
 	public List<CategoryVo> getCategoryListById(String id) {
 		return sqlSession.selectList("category.getCategoryListById", id);
+	}
+
+	public int removeCategory(CategoryVo vo) {
+		return sqlSession.delete("category.deleteByNo", vo);
+		
 	}
 
 }

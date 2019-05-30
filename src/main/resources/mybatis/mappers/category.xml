@@ -16,6 +16,15 @@
 		]]>
 	</select>
 	
+	<insert id="insertCategory" parameterType="categoryvo">
+		<![CDATA[
+			insert 
+			into category(no, name, description, reg_date, blog_id)
+			values(null, #{name }, #{description }, now(), #{blogId }) 
+		]]>
+	</insert>
+	
+	
 	<insert id="insert" parameterType="categoryvo">
 		<![CDATA[
 			insert 
@@ -32,12 +41,19 @@
 		]]>
 	</select>
 	
+	<delete id="deleteByNo" parameterType="categoryvo">
+		<![CDATA[
+			delete from category
+			where no=#{no }
+		]]>
+	</delete>
+	
 	<select id="getCategoryListById" parameterType="string" resultType="categoryvo">
 		<![CDATA[
 			select c.no, c.name, c.description, c.reg_date as regDate, c.blog_id as blogId, count(p.no) as count
 			from category c
 					left outer join post p on p.category_no = c.no and c.blog_id=#{id }
-			group by c.name
+			group by c.no
 			order by count(p.no) desc
 		]]>
 	</select>

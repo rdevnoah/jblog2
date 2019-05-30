@@ -19,7 +19,12 @@ public class CategoryVo {
 		this.blogId = id;
 		this.no = no;
 	}
-
+	
+	public CategoryVo(String id, String name, String description) {
+		this.blogId = id;
+		this.name = name;
+		this.description = description;
+	}
 	
 	
 	public int getCount() {

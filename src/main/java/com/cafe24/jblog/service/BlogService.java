@@ -161,4 +161,18 @@ public class BlogService {
 		return map;
 	}
 
+	public List<CategoryVo> addAndGetCategoryList(String id, String name, String description) {
+		CategoryVo vo = new CategoryVo(id, name, description);
+		categoryDao.insertCategory(vo);
+		List<CategoryVo> list = categoryDao.getCategoryListById(id);
+		return list;
+	}
+
+	public List<CategoryVo> removeAndGetCategoryList(String id, String no) {
+		CategoryVo vo = new CategoryVo(id, Long.parseLong(no));
+		categoryDao.removeCategory(vo);
+		List<CategoryVo> list = categoryDao.getCategoryListById(id);
+		return list;
+	}
+
 }
