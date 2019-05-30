@@ -28,11 +28,11 @@ public class BlogDao {
 		return sqlSession.insert("blog.insert", blog);
 	}
 
-	public List<PostVo> getAllBlog(String id) {
+	public List<PostVo> getAllPost(String id) {
 		return sqlSession.selectList("post.getAllPostById",id);
 	}
 	
-	public List<PostVo> getAllBlog(CategoryVo vo){
+	public List<PostVo> getAllPost(CategoryVo vo){
 		return sqlSession.selectList("post.getAllPostByIdAndCategoryNo", vo);
 	}
 
@@ -40,9 +40,7 @@ public class BlogDao {
 		return sqlSession.selectOne("post.getMainPost", id);
 	}
 
-	public List<CategoryVo> getCategoryListById(String id) {
-		return sqlSession.selectList("category.getCategoryListById", id);
-	}
+	
 
 	public PostVo getMainPost(Long no) {
 		return sqlSession.selectOne("post.getMainPostByNo", no);
@@ -50,6 +48,14 @@ public class BlogDao {
 
 	public PostVo getMainPost(CategoryVo vo) {
 		return sqlSession.selectOne("post.getMainPostByIdAndCategoryNo", vo);
+	}
+
+	public BlogVo getBlogById(String id) {
+		return sqlSession.selectOne("blog.getBlogById", id);
+	}
+
+	public int update(BlogVo vo) {
+		return sqlSession.update("blog.update", vo);
 	}
 
 }

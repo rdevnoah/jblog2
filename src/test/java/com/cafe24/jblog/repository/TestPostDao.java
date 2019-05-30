@@ -45,14 +45,14 @@ public class TestPostDao {
 		// UserVo vo = new User("아이디","이름","비밀번호");
 		UserVo user1 = new UserVo("zzagam1", "김영호", "zzagam1");
 		// BoardVo board = new BoardVo("블로그아이디", "로고", "타이틀");
-		BlogVo blog1 = new BlogVo("zzagam1", "로고파일위치", "블로그 제목입니다.");
+		BlogVo blog1 = new BlogVo("zzagam1", "블로그 제목입니다.", "basic");
 
 		// CategoryVo category = new CategoryVo("블로그아이디");
 		UserVo user2 = new UserVo("zzagam2", "류상희", "zzagam2");
-		BlogVo blog2 = new BlogVo("zzagam2", "로고파일위치", "블로그 제목입니다.");
+		BlogVo blog2 = new BlogVo("zzagam2", "블로그 제목입니다.", "basic");
 
 		UserVo user3 = new UserVo("zzagam3", "김정호", "zzagam3");
-		BlogVo blog3 = new BlogVo("zzagam3", "로고파일위치", "블로그 제목입니다.");
+		BlogVo blog3 = new BlogVo("zzagam3", "블로그 제목입니다.", "basic");
 
 		CategoryVo category = new CategoryVo("zzagam1");
 		assertThat(userDao.insert(user1), is(1));
@@ -89,6 +89,6 @@ public class TestPostDao {
 		assertThat(postDao.getCount(),is(3));
 		
 		
-		assertThat(blogDao.getAllBlog("zzagam1").size(), is(3));
+		assertThat(blogDao.getAllPost("zzagam1").size(), is(3));
 	}
 }

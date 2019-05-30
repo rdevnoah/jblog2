@@ -23,11 +23,11 @@
 				<ul class="blog-list">
 					<c:if test='${requestScope.map.title == "none" }'>
 						<div style="text-align: center">전체 포스트 목록</div>
-						<div>--------------------------</div>
+						<div style="text-align: center">--------------------------</div>
 					</c:if>
 					<c:if test='${requestScope.map.title == "exist" }'>
 						<div style="text-align: center">${requestScope.map.main.categoryName } 포스트 목록</div>
-						<div>--------------------------</div>
+						<div style="text-align: center">--------------------------</div>
 					</c:if>
 					<c:forEach items="${requestScope.map.post }" var="post">
 						<li><a href="${pageContext.request.contextPath }/${post.blogId }/${post.categoryNo }/${post.no }">${post.title }</a> <span>${post.regDate }</span></li>
@@ -35,10 +35,18 @@
 				</ul>
 			</div>
 		</div>
-
+									
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+				<c:choose>
+					<c:when test='${map.blog.logo == "images/basic" || empty map.blog.logo}'>
+      					<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">	
+      				</c:when>
+					<c:otherwise>
+						<img src="${pageContext.request.contextPath}/assets/jblog/${requestScope.map.blog.logo }">
+					</c:otherwise>
+				</c:choose>
+				
 			</div>
 		</div>
 

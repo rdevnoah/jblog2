@@ -11,6 +11,8 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+	<!-- 디폴트 서블렛 위임 핸들러 추가 -->
+	<mvc:default-servlet-handler/>
 
 	<mvc:annotation-driven>
 		<mvc:message-converters>
@@ -25,14 +27,12 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!-- 디폴트 서블렛 위임 핸들러 추가 -->
-	<mvc:default-servlet-handler/>
 
 	<!-- 빈 설정 어노테이션으로 대체 추가 -->
 	<context:annotation-config />
 	
 	<!-- the mvc resources tag does the magic -->
-	<mvc:resources mapping="/images/**" location="file:/Users/noah/jblog-uploads/blog/" />
+	<mvc:resources mapping="/assets/jblog/images/**" location="file:/Users/noah/jblog-uploads/blog/" />
 	
 	
 	

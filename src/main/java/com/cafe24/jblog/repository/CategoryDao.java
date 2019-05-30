@@ -1,5 +1,7 @@
 package com.cafe24.jblog.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,10 @@ public class CategoryDao {
 
 	public CategoryVo getCategory(String blogId) {
 		return sqlSession.selectOne("category.getTestCategory", blogId);
+	}
+
+	public List<CategoryVo> getCategoryListById(String id) {
+		return sqlSession.selectList("category.getCategoryListById", id);
 	}
 
 }

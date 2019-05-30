@@ -7,6 +7,7 @@ public class CategoryVo {
 	private String regDate;
 	private String blogId;
 	
+	private int count;
 	
 	public CategoryVo() {}
 	
@@ -17,6 +18,16 @@ public class CategoryVo {
 	public CategoryVo(String id, Long no) {
 		this.blogId = id;
 		this.no = no;
+	}
+
+	
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public Long getNo() {
