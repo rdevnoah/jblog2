@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.jblog.service.BlogService;
 import com.cafe24.jblog.vo.BlogVo;
+import com.cafe24.jblog.vo.PostVo;
 
 @Controller
 public class BlogController {
@@ -30,11 +31,11 @@ public class BlogController {
 		if (!categoryNo.isPresent() && !postNo.isPresent()) {
 			map = blogService.getPostById(id);
 		}
-		if (categoryNo.isPresent() && postNo.isPresent()) {
-			map = blogService.getPostByIdAndPostNo(id, postNo.get());
-		}
 		if (categoryNo.isPresent() && !postNo.isPresent()) {
 			map = blogService.getPostByIdAndCategoryNo(id, categoryNo.get());
+		}
+		if (categoryNo.isPresent() && postNo.isPresent()) {
+			map = blogService.getPostByIdAndPostNo(id, categoryNo.get(), postNo.get());
 		}
 		model.addAttribute("map",map);
 		return "/blog/blog-main";
@@ -62,8 +63,6 @@ public class BlogController {
 		return "redirect:/"+id+"/admin/basic";
 	}
 	///${authUser.id }/admin/category
-	
-	
 	@RequestMapping({"/{id}/admin/category"})
 	public String adminCategoryMain(@PathVariable String id, Model model) {
 		Map<String, Object> map = blogService.getAdminCategoryMain(id);
@@ -71,6 +70,21 @@ public class BlogController {
 		return "/blog/blog-admin-category";
 	}
 	
+	
+	//${authUser.id }/admin/write
+	@RequestMapping({"{id}/admin/write"})
+	public String writePost(@PathVariable String id, Model model) {
+		Map<String, Object> map = blogService.getAdminCategoryMain(id);
+		model.addAttribute("map", map);
+		return "/blog/blog-admin-write";
+	}
+	
+	@RequestMapping(value= {"/{id}/admin/write"}, method = RequestMethod.POST)
+	public String writePost(@PathVariable String id, PostVo vo) {
+		System.out.println(vo);
+		blogService.writePost(id, vo);
+		return "redirect:/"+id+"/"+vo.getCategoryNo();
+	}
 	
 	
 }

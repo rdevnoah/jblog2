@@ -1,6 +1,7 @@
 package com.cafe24.jblog.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,10 @@ public class BlogDao {
 
 	public int update(BlogVo vo) {
 		return sqlSession.update("blog.update", vo);
+	}
+
+	public List<PostVo> getAllPost(Map<String, String> data) {
+		return sqlSession.selectList("post.getAllPostByIdAndCategoryNoAndPostNo");
 	}
 
 }

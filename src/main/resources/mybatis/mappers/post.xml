@@ -82,6 +82,17 @@
 		]]>
 	</select>
 	
+	<select id="getAllPostByIdAndCategoryNoAndPostNo" parameterType="map" resultType="postvo">
+		<![CDATA[
+			select p.no, p.title, p.contents, p.reg_date as regDate, p.category_no as categoryNo, u.id as blogId
+			from user u, blog b, category c, post p
+			where u.id = b.id and b.id = c.blog_id 
+				and c.no = p.category_no 
+				and u.id=#{id }
+				and c.no=#{categoryNo }
+				and p.no=#{postNo }
+		]]>
+	</select>
 	
 
 

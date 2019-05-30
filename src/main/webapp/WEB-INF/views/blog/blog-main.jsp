@@ -56,6 +56,7 @@
 				<c:forEach items="${requestScope.map.category }" var="category" >
 					<li><a href="${pageContext.request.contextPath }/${category.blogId }/${category.no }">${category.name }</a></li>
 				</c:forEach>
+				<li><a href="${pageContext.request.contextPath }/${map.blog.id }">전체 포스트 목록</a></li>
 			</ul>
 		</div>
 		
