@@ -15,7 +15,8 @@
 		</c:when>
 		<c:otherwise>
 			<li><a href="">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/basic">블로그 관리</a></li>		
+			<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/basic">블로그 관리</a></li>	
+			<li><a href="${pageContext.request.contextPath }/${authUser.id }">블로그 메인</a></li>		
 		</c:otherwise>
 	</c:choose>
 	</ul>

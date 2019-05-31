@@ -64,7 +64,7 @@ public class BlogService {
 
 	public Map<String, Object> getPostByIdAndPostNo(String id, String categoryNo, String postNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		CategoryVo vo = new CategoryVo(id, Long.parseLong(categoryNo));
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("id", id);
 		data.put("postNo", postNo);
@@ -73,7 +73,7 @@ public class BlogService {
 		PostVo mainPost = blogDao.getMainPost(Long.parseLong(postNo));
 		map.put("main", mainPost);
 		// 2. 아이디에 해당하는 블로그 모든 글 가져오기
-		List<PostVo> blogList = blogDao.getAllPost(data);
+		List<PostVo> blogList = blogDao.getAllPost(vo);
 		map.put("post", blogList);
 		// 3. 아이디에 해당하는 블로그의 카테고리들 가져오기
 		List<CategoryVo> categoryList = categoryDao.getCategoryListById(id);
