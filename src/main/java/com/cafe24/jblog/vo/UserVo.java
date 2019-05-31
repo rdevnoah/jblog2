@@ -1,8 +1,19 @@
 package com.cafe24.jblog.vo;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class UserVo {
+	
+	@NotEmpty
+	@Length(min=2, max=12)
 	private String id;
+	
+	@Length(min=6, max=12)
 	private String password;
+	
+	@NotEmpty
+	@Length(min=2, max=8)
 	private String name;
 	private String regDate;
 

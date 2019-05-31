@@ -24,6 +24,14 @@
 		]]>
 	</insert>
 	
+	
+	<select id="getLogoById" parameterType="string" resultType="string">
+		<![CDATA[
+			select logo 
+			from blog
+			where id=#{id }
+		]]>
+	</select>
 	<select id="getBlogById" parameterType="string" resultType="blogvo">
 		<![CDATA[
 			select id, title, logo 

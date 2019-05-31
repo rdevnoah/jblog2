@@ -24,4 +24,9 @@ public class PostDao {
 		return sqlSession.insert("post.insert", vo);
 	}
 
+	public int removePostByCategoryNo(long no) {
+		return sqlSession.delete("post.deleteByCategoryNo", no);
+		
+	}
+
 }

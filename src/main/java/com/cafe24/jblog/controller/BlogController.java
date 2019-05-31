@@ -55,8 +55,6 @@ public class BlogController {
 			, String title 
 			, @RequestParam(value="logo")MultipartFile multipartFile
 			, Model model) {
-		System.out.println(title);
-		System.out.println(multipartFile.getOriginalFilename());
 		
 		blogService.updateBlog(id, title, multipartFile);
 		model.addAttribute("status", "success");

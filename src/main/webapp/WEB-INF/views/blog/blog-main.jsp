@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+	pageContext.setAttribute("newline", "\n");
+%>
 <!doctype html>
 <html>
 <head>
@@ -17,8 +20,8 @@
 				<div class="blog-content">
 					<h4>${requestScope.map.main.title }</h4>
 					<p>
-						${requestScope.map.main.contents }
-					<p>
+						${fn:replace(requestScope.map.main.contents , pageScope.newline, "<br>") }	
+					</p>
 				</div>
 				<ul class="blog-list">
 					<c:if test='${requestScope.map.title == "none" }'>

@@ -27,9 +27,6 @@ public class BlogService {
 	private static final String URL = "images";
 
 	@Autowired
-	private UserDao userDao;
-
-	@Autowired
 	private CategoryDao categoryDao;
 
 	@Autowired
@@ -49,7 +46,7 @@ public class BlogService {
 		List<PostVo> blogList = blogDao.getAllPost(id);
 		map.put("post", blogList);
 		// 3. 아이디에 해당하는 블로그의 카테고리들 가져오기
-		List<CategoryVo> categoryList = categoryDao.getCategoryListById(id);
+		List<CategoryVo> categoryList = categoryDao.getMainCategoryListById(id);
 		// 4. 블로그 정보 받아오기
 		BlogVo blog = blogDao.getBlogById(id);
 		String url = URL + "/" + blog.getLogo();
@@ -57,7 +54,6 @@ public class BlogService {
 		map.put("category", categoryList);
 		map.put("title", "none");
 		map.put("blog", blog);
-		System.out.println(blog.getLogo()+" aaaaaaaaaaaaa");
 
 		return map;
 	}
@@ -76,7 +72,7 @@ public class BlogService {
 		List<PostVo> blogList = blogDao.getAllPost(vo);
 		map.put("post", blogList);
 		// 3. 아이디에 해당하는 블로그의 카테고리들 가져오기
-		List<CategoryVo> categoryList = categoryDao.getCategoryListById(id);
+		List<CategoryVo> categoryList = categoryDao.getMainCategoryListById(id);
 		// 4. 블로그 정보 받아오기
 		BlogVo blog = blogDao.getBlogById(id);
 		String url = URL + "/" + blog.getLogo();
@@ -98,7 +94,7 @@ public class BlogService {
 		List<PostVo> blogList = blogDao.getAllPost(vo);
 		map.put("post", blogList);
 		// 3. 아이디에 해당하는 블로그의 카테고리들 가져오기
-		List<CategoryVo> categoryList = categoryDao.getCategoryListById(id);
+		List<CategoryVo> categoryList = categoryDao.getMainCategoryListById(id);
 		// 4. 블로그 정보 받아오기
 		BlogVo blog = blogDao.getBlogById(id);
 		String url = URL + "/" + blog.getLogo();
@@ -122,15 +118,22 @@ public class BlogService {
 			String originalFilename = multipartFile.getOriginalFilename();
 			String extName = originalFilename.substring(originalFilename.lastIndexOf('.') + 1); // .빼고 확장자
 			String saveFileName = generateSaveFileName(extName);
+			if (multipartFile.isEmpty()) {
+				saveFileName = blogDao.getLogoByBlogId(id);
+				BlogVo vo = new BlogVo(id, title, saveFileName);
+				blogDao.update(vo);
+				return;
+			} else {
 
-			byte[] fileDataBuffer;
-			fileDataBuffer = multipartFile.getBytes();
-			OutputStream os = new FileOutputStream(SAVE_PATH + "/" + saveFileName);
-			os.write(fileDataBuffer);
-			os.close();
-			BlogVo vo = new BlogVo(id, title, saveFileName);
+				byte[] fileDataBuffer;
+				fileDataBuffer = multipartFile.getBytes();
+				OutputStream os = new FileOutputStream(SAVE_PATH + "/" + saveFileName);
+				os.write(fileDataBuffer);
+				os.close();
+				BlogVo vo = new BlogVo(id, title, saveFileName);
 
-			blogDao.update(vo);
+				blogDao.update(vo);
+			}
 		} catch (IOException e) {
 			throw new RuntimeException("FileUpload Error" + e);
 		}
@@ -154,12 +157,12 @@ public class BlogService {
 	}
 
 	public Map<String, Object> getAdminCategoryMain(String id) {
-		//1. 아이디에 해당하는 블로그 정보 얻어오기
-		//2. 아이디에 해당하는 카테고리 정보들 얻어오기
+		// 1. 아이디에 해당하는 블로그 정보 얻어오기
+		// 2. 아이디에 해당하는 카테고리 정보들 얻어오기
 		Map<String, Object> map = new HashMap<String, Object>();
 		BlogVo blogVo = blogDao.getBlogById(id);
 		List<CategoryVo> categoryList = categoryDao.getCategoryListById(id);
-		
+
 		map.put("blog", blogVo);
 		map.put("categoryList", categoryList);
 		return map;
@@ -174,6 +177,7 @@ public class BlogService {
 
 	public List<CategoryVo> removeAndGetCategoryList(String id, String no) {
 		CategoryVo vo = new CategoryVo(id, Long.parseLong(no));
+		postDao.removePostByCategoryNo(Long.parseLong(no));
 		categoryDao.removeCategory(vo);
 		List<CategoryVo> list = categoryDao.getCategoryListById(id);
 		return list;
@@ -181,10 +185,7 @@ public class BlogService {
 
 	public int writePost(String id, PostVo vo) {
 		vo.setBlogId(id);
-		System.out.println(postDao.insert(vo));
 		return 1;
 	}
-
-	
 
 }

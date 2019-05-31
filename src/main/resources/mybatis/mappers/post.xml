@@ -23,6 +23,12 @@
 		]]>
 	</select>
 	
+	<delete id="deleteByCategoryNo" parameterType="long">
+		<![CDATA[
+			delete from post where category_no=#{no }
+		]]>
+	</delete>
+	
 	<select id="getMainPostByNo" parameterType="long" resultType="postvo">
 		<![CDATA[
 			select p.no, p.title, p.contents, p.reg_date as regDate, p.category_no as categoryNo, c.name as categoryName

@@ -28,4 +28,8 @@ public class UserDao {
 		return sqlSession.selectOne("user.get", vo);
 	}
 
+	public UserVo get(String id) {
+		return sqlSession.selectOne("user.getUserById", id);
+	}
+
 }

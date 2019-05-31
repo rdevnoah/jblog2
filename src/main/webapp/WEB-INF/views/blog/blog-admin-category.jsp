@@ -29,9 +29,10 @@ $(function(){
 				html+="<th>포스트 수</th>";
 				html+="<th>설명</th>";
 				html+="<th>삭제</th></tr>";;
+				var count = response.length;
 				for (var i=0; i<response.length; i++){
 					
-					html+="<tr><td>"+response[i].no+"</td>";
+					html+="<tr><td>"+(count-i+1)+"</td>";
 					html+="<td>"+response[i].name+"</td>";
 					html+="<td>"+response[i].count+"</td>";
 					html+="<td>"+response[i].description+"</td>";
@@ -71,9 +72,10 @@ $(function(){
 				html+="<th>포스트 수</th>";
 				html+="<th>설명</th>";
 				html+="<th>삭제</th></tr>";;
+				var count = response.length;
 				for (var i=0; i<response.length; i++){
 					
-					html+="<tr><td>"+response[i].no+"</td>";
+					html+="<tr><td>"+(count-i+1)+"</td>";
 					html+="<td>"+response[i].name+"</td>";
 					html+="<td>"+response[i].count+"</td>";
 					html+="<td>"+response[i].description+"</td>";
@@ -116,9 +118,10 @@ $(function(){
 		      			<th>설명</th>
 		      			<th>삭제</th>      			
 		      		</tr>
-		      		<c:forEach items="${map.categoryList }" var="category">
+		      		<c:set var='count' value='${fn:length(map.categoryList) }'/>
+		      		<c:forEach items="${map.categoryList }" var="category" varStatus="status">
 		      		<tr>
-						<td>${category.no }</td>
+						<td>${count-status.index }</td>
 						<td>${category.name }</td>
 						<td>${category.count }</td>
 						<td>${category.description }</td>
@@ -141,11 +144,9 @@ $(function(){
 		      		<tr>
 		      			<td class="s">&nbsp;</td>
 		      			<td><input type="button" id="addCategoryBtn" value="카테고리 추가"></td>
-		      		</tr>      		      
-		      			
+		      		</tr>
 		      	</table> 
-			</div>
-			<a value="df" class="asdfBtn">asdf</a>	
+			</div>	
 		</div>
 		<div id="footer">
 			<p>

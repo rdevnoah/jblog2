@@ -12,7 +12,7 @@
 <body>
 	<div class="center-content">
 		<c:import url='/WEB-INF/views/includes/mainHeader.jsp'/>
-		<form class="search-form">
+		<form class="search-form" method="post" action="${pageContext.request.contextPath }/user/search">
 			<fieldset>
 				<input type="text" name="keyword" />
 				<input type="submit" value="검색" />

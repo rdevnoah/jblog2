@@ -44,4 +44,8 @@ public class CategoryDao {
 		
 	}
 
+	public List<CategoryVo> getMainCategoryListById(String id) {
+		return sqlSession.selectList("category.getMainCategoryListById",id);
+	}
+
 }

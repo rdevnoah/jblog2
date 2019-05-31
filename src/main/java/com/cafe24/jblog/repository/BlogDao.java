@@ -63,4 +63,8 @@ public class BlogDao {
 		return sqlSession.selectList("post.getAllPostByIdAndCategoryNoAndPostNo");
 	}
 
+	public String getLogoByBlogId(String id) {
+		return sqlSession.selectOne("blog.getLogoById",id);
+	}
+
 }

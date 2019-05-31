@@ -24,13 +24,18 @@ public class UserService {
 	
 	public int registerUser(UserVo vo) {
 		userDao.insert(vo);
-		blogDao.insert(new BlogVo(vo.getId(), "블로그입니다.", "default"));
+		blogDao.insert(new BlogVo(vo.getId(), "블로그입니다.", "basic"));
 		categoryDao.insert(new CategoryVo(vo.getId()));
 		return 1;
 	}
 
 	public UserVo getUserByIdAndPassword(UserVo vo) {
 		return userDao.getUser(vo);
-	}	
+	}
+
+	public boolean existId(String id) {
+		UserVo userVo = userDao.get(id);
+		return userVo != null;
+	}
 
 }

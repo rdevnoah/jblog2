@@ -51,14 +51,21 @@
 	<select id="getCategoryListById" parameterType="string" resultType="categoryvo">
 		<![CDATA[
 			select c.no, c.name, c.description, c.reg_date as regDate, c.blog_id as blogId, count(p.no) as count
-			from category c
-					left outer join post p on p.category_no = c.no and c.blog_id=#{id }
+ 			from category c
+ 					left outer join post p on p.category_no = c.no and c.blog_id=#{id }
+			where c.blog_id=#{id }
 			group by c.no
-			order by count(p.no) desc
+ 			order by count(p.no) desc     
 		]]>
 	</select>
 	
-	
+	<select id="getMainCategoryListById" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+			select no, name, description, reg_date as regDate, blog_id as blogId
+			from category
+			where blog_id=#{id }
+		]]>
+	</select>
 	
  
 </mapper>
