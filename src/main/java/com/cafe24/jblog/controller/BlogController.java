@@ -45,7 +45,6 @@ public class BlogController {
 	public String adminMain(@PathVariable String id, Model model) {
 		BlogVo vo = blogService.getBlogById(id);
 		model.addAttribute("blog", vo);
-		System.out.println(vo.getLogo()+" $$$$$$$$$$$$");
 		return "/blog/blog-admin-basic";
 	}
 	
