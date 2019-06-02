@@ -79,7 +79,6 @@ public class BlogController {
 	
 	@RequestMapping(value= {"/{id}/admin/write"}, method = RequestMethod.POST)
 	public String writePost(@PathVariable String id, PostVo vo) {
-		System.out.println(vo);
 		blogService.writePost(id, vo);
 		return "redirect:/"+id+"/"+vo.getCategoryNo();
 	}
