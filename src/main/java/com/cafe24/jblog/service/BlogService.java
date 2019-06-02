@@ -185,7 +185,7 @@ public class BlogService {
 
 	public int writePost(String id, PostVo vo) {
 		vo.setBlogId(id);
-		System.out.println(postDao.insert(vo));
+		postDao.insert(vo);
 		return 1;
 	}
 
